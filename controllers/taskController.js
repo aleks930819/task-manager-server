@@ -7,10 +7,18 @@ const ErrorResponse = require('../utils/errorResponse');
 // @access Public
 
 exports.getAllTasks = asyncHandler(async (req, res, next) => {
-  // const tasks = await Task.find({});
-
   res.status(200).json(res.advancedResults);
 });
+
+exports.createTask = asyncHandler(async (req, res, next) => {
+  req.body.user = req.user.id;
+
+  const task = await Task.create(req.body);
+
+  res.status(201).json({ success: true, task });
+});
+
+
 
 exports.createTask = asyncHandler(async (req, res, next) => {
   req.body.user = req.user.id;
@@ -41,10 +49,7 @@ exports.updateTask = asyncHandler(async (req, res, next) => {
 
   if (task.user.toString() !== req.user.id) {
     return next(
-      new ErrorResponse(
-        `User  is not authorized to update this task`,
-        401
-      )
+      new ErrorResponse(`User  is not authorized to update this task`, 401)
     );
   }
 
@@ -66,10 +71,7 @@ exports.deleteTask = asyncHandler(async (req, res, next) => {
 
   if (task.user.toString() !== req.user.id) {
     return next(
-      new ErrorResponse(
-        `User is not authorized to delete this task`,
-        401
-      )
+      new ErrorResponse(`User is not authorized to delete this task`, 401)
     );
   }
 

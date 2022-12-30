@@ -15,9 +15,7 @@ const users = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/users.json`, 'utf-8')
 );
 
-// const courses = JSON.parse(
-//   fs.readFileSync(`${__dirname}/_data/courses.json`, 'utf-8')
-// );
+
 const importData = async () => {
   try {
     await User.create(users);

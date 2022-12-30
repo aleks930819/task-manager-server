@@ -5,6 +5,7 @@ const {
   getTask,
   updateTask,
   deleteTask,
+  getAllTasksOfUser,
 } = require('../controllers/taskController');
 const { protect, authorize } = require('../middleware/authMiddleware');
 
@@ -17,7 +18,9 @@ taskRouter
   .route('/')
   .get(advancedResults(Task), getAllTasks)
   .post(protect, authorize('user', 'admin'), createTask);
-taskRouter
+  
+  
+  taskRouter
   .route('/:id')
   .get(protect, authorize('user', 'admin'), getTask)
   .put(protect, authorize('user', 'admin'), updateTask)

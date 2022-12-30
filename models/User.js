@@ -37,6 +37,9 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
+
+
+
 UserSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     next();
@@ -67,5 +70,6 @@ UserSchema.methods.getResetPasswordToken = function () {
 
   return resetToken;
 };
+
 
 module.exports = mongoose.model('User', UserSchema);
