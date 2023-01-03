@@ -31,6 +31,10 @@ Send an authorized PUT request to/api/v1/auth/updateddetails.
 
 Send an authorized PUT request /api/v1/auth/updatepassword.
 
+## Forgot password 
+
+Send  POST request /api/v1/auth/forgot-password
+
 
 ### Tasks
 
