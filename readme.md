@@ -1,4 +1,4 @@
-# Task Manager API
+# Task Manager Server
 
 ### Authorization
 
